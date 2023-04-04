@@ -1,20 +1,7 @@
 <template>
   <div class="w-75 mx-auto">
     <div class="w-100 pt-14">
-      <div
-        class="w-100 text-center text-h4 pa-10 border rounded-xl position-relative custom-back"
-        v-if="!credentialTrue"
-      >
-        <p class="w-100">
-          There is No Credential For this User Please Make Onces
-        </p>
-        <div>
-          <v-btn class="mt-8" color="black" @click="credentialUser"
-            >Make Credential For this User
-          </v-btn>
-        </div>
-      </div>
-      <div v-else>
+      <div>
         <v-form @submit.prevent="createAppointment">
           <v-select
             class="mt-8"
@@ -25,17 +12,6 @@
             item-value="_id"
           >
           </v-select>
-
-          <v-select
-            class="mt-8"
-            v-model="credential_id"
-            label="Credential Username"
-            :items="userIdArray"
-            item-title="credentials.username"
-            item-value="_id"
-          >
-          </v-select>
-
           <v-btn type="submit" color="black" :disabled="disable">SUBMIT</v-btn>
         </v-form>
 
@@ -70,11 +46,7 @@ const user_id = route.params.user_id;
 const loading = ref(false);
 
 ///// credential id for v-model credential id
-const credential_id = ref(null);
-
-///// if credentialTrue is true show the form ----------- else show me the box to tell user make credential
-///// this variable tell users that the chosen uesr doesn't have credential or not
-let credentialTrue = ref(false);
+const credential_id = route.params.credential_id;
 
 ///// for push multi credential users to this variable
 const userIdArray = reactive([]);
@@ -82,10 +54,6 @@ const userIdArray = reactive([]);
 ///// fetch all users to see embassies with pinia store
 const embassyStore = useVisaStore();
 embassyStore.fetchAllEmbassies(loading);
-
-///// fetch all credentials for checking id
-const credentialStore = useCredentialStore();
-credentialStore.fetchAllCredentials(loading);
 
 //// errRes and sucRes for req message & disable for disable button
 const errRes = ref(false);
@@ -95,23 +63,6 @@ const disable = ref(false);
 ///// embassy id v-model
 const embassy_id = ref(null);
 
-//// find users credentials
-watch(() => {
-  credentialStore.allCredential.forEach((item) => {
-    if (item.user_id === user_id) {
-      userIdArray.push(item);
-      credentialTrue.value = true;
-    } else {
-      console.log("nope");
-    }
-  });
-}, credentialStore.fetchAllCredentials);
-
-//// push to credential for this user
-const credentialUser = () => {
-  router.push(`/user/${user_id}`)
-}
-
 //// create appointment
 const createAppointment = () => {
   disable.value = true;
@@ -120,7 +71,7 @@ const createAppointment = () => {
     "http://185.208.172.123/applicant",
     {
       user_id: user_id,
-      credentials_id: credential_id.value,
+      credentials_id: credential_id,
       embassy_id: embassy_id.value,
     },
     {

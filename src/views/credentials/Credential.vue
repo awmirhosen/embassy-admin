@@ -12,26 +12,20 @@
   <!----------------------width 75 % wrapper------------------------>
   <div class="w-75 mx-auto mt-5">
     <!-------------start table of users-------------->
-    <v-table class="mt-4">
-      <thead>
-        <tr>
-          <th class="text-left">Name</th>
-          <th class="text-left">Platform type</th>
-          <!--        <th class="text-left">-->
-          <!--          Action-->
-          <!--        </th>-->
+    <v-table class="mt-4 rounded-xl border">
+      <thead class="bg-black w-100 rounded-xl">
+        <tr class="text-center ">
+          <th class="text-center text-white">Name</th>
+          <th class="text-center text-white">Make applicant</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in credentialStore.allCredential" :key="item.name">
+        <tr v-for="item in credentialStore.allCredential" class="text-center" :key="item.name">
           <td>{{ item.credentials.username }}</td>
-          <td ref="platform_id">
-            {{item._id}}
+          <td>
+            <v-btn color="black" @click="createApplicant(item._id, item.user_id)">Make Applicant</v-btn>
           </td>
-          <td ref="platform_id">
-            <p v-if="item.platformType === 1" class="w-100">UsVisaInfo</p>
-            <p v-if="item.platformType === 2" class="w-100">Ckgsir</p>
-          </td>
+
           <!--        <td>-->
           <!--          <v-btn color="black" @click="goToApplicant(item._id, item.user_id)">Applicant</v-btn>-->
           <!--        </td>-->
@@ -53,13 +47,14 @@
 <script setup>
 import { ref } from "vue";
 import { usePlatformStore } from "../../store/platform";
-// import { useApplicantStore } from "../../store/applicant";
 import { useCredentialStore } from "../../store/credential";
 import { useRouter } from "vue-router";
 const loading = ref(true);
 
 const credentialStore = useCredentialStore();
 const platformStore = usePlatformStore();
+
+const router = useRouter();
 
 // platformStore.fetchAllPlatforms(loading);
 credentialStore.fetchAllCredentials(loading);
@@ -74,6 +69,10 @@ platformStore.allPlatforms.forEach((i) => {
     }
   });
 });
+
+const createApplicant = (credential_id, user_id) => {
+  router.push(`/applicant/${credential_id}/${user_id}`)
+}
 
 // const router = useRouter();
 //

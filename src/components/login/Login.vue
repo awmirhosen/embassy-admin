@@ -83,9 +83,7 @@ axios
     })
     .catch((err) => {
       console.log(err);
-      if (err.response.status == 401) {
-        snackbar.value = true;
-      }
+      snackbar.value = true;
     });
 };
 </script>

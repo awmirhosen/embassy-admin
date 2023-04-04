@@ -73,7 +73,7 @@ const router = createRouter({
     },
     //////// applicant
     {
-      path: "/user/applicant/:user_id",
+      path: "/applicant/:credential_id/:user_id",
       name: "addApplicant",
       component: () => import("../views/applicant/AddApplicant.vue"),
     },
@@ -100,6 +100,17 @@ const router = createRouter({
       name: "appointment",
       component: () => import("../views/appointment/Appointment.vue"),
     },
+    ////// embassy config
+    {
+      path: "/visa/us/embassy-config/:embassy_id",
+      name: "createEmbassyConfig",
+      component: () => import("../views/visa/embassy/config/CreateEmbassyConfig.vue"),
+    },
+    {
+      path: "/visa/us/embassy-config",
+      name: "embassyConfig",
+      component: () => import("../views/visa/embassy/config/EmbassyConfig.vue"),
+    },
   ],
 });
 
@@ -113,7 +124,7 @@ router.beforeEach(async (to, from) => {
     // redirect the user to the login page
     return { name: "login" };
   } else {
-    console.log("yesss");
+
   }
 });
 

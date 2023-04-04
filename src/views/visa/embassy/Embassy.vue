@@ -16,6 +16,7 @@
       <thead class="bg-black text-center">
         <tr>
           <th class="text-left text-white text-center">Name</th>
+          <th class="text-left text-white text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +26,15 @@
           class="text-center"
         >
           <td @change="test">{{ item.name }}</td>
+          <td @change="test">
+            <v-btn color="black" @click="createConfig">
+              Config
+            </v-btn>
+          </td>
         </tr>
+      <tr>
+
+      </tr>
       </tbody>
     </v-table>
     <!-------------End table of users-------------->
@@ -43,15 +52,19 @@
 <script setup>
 import { ref } from "vue";
 import { useVisaStore } from "../../../store/visa";
+import {useRouter} from "vue-router";
 
 const loading = ref(true);
 const visaStore = useVisaStore();
 
+const router = useRouter();
+
 visaStore.fetchAllEmbassies(loading);
 
-const test = () => {
-  console.log("fdlskj");
-};
+const createConfig = (embassy_id) => {
+  router.push(`./visa/us/embassy-config/${embassy_id}`);
+}
+
 </script>
 
 <style scoped></style>

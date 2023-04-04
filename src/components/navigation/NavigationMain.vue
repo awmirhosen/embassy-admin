@@ -162,6 +162,7 @@ const subMenusVisa = reactive([
   {title: "Add Country", keyword: "add-country", icon: null, link: "addCountry"},
   {title: "All Embassy", keyword: "all-embassy", icon: null, link: "embassy"},
   {title: "Add embassy", keyword: "add-embassy", icon: null, link: "addEmbassy"},
+  {title: "Embassies Config", keyword: "add-embassy", icon: null, link: "embassyConfig"},
 ]);
 
 const subMenusPlatform = reactive([

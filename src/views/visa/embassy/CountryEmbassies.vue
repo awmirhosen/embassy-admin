@@ -40,7 +40,7 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import {useVisaStore} from "@/store/visa";
+import {useVisaStore} from "../../../store/visa";
 import {ref} from "vue";
 
 const route = useRoute();

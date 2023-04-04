@@ -41,12 +41,6 @@
               @click.prevent="addCredential(item._id)"
               >Credential</v-btn
             >
-            <v-btn
-              class="mx-3"
-              color="white"
-              @click.prevent="addApplicant(item._id)"
-              >Appointment</v-btn
-            >
           </td>
         </tr>
       </tbody>

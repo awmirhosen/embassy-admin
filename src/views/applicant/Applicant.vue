@@ -9,19 +9,19 @@
   <!----------------------width 75 % wrapper------------------------>
   <div class="w-75 mx-auto mt-5">
     <!-------------start table of users-------------->
-    <v-table class="mt-4">
-      <thead>
+    <v-table class="mt-4 rounded-xl border">
+      <thead class="bg-black text-white">
       <tr>
-        <th class="text-left">
-          Name
+        <th class="text-center text-white">
+          Applicant ID
         </th>
-        <th class="text-left">
-          Platform type
+        <th class="text-center text-white">
+          Embassy ID
         </th>
-        <th class="text-left">
-          Embassy ids
+        <th class="text-center text-white">
+          User ID
         </th>
-        <th class="text-left">
+        <th class="text-center text-white">
           Action
         </th>
       </tr>
@@ -30,13 +30,18 @@
       <tr
           v-for="item in applicantStore.allApplicant"
           :key="item.name"
+          class="text-center"
       >
-        <td>{{ item.name }}</td>
-        <td>{{ item.platformType }}</td>
+        <td>{{ item._id }}</td>
+        <td>{{ item.embassy_id }}</td>
         <td>
-          <v-btn color="black">Edit</v-btn>
+          {{ item.user_id }}
         </td>
-
+        <td>
+          <v-btn>
+            Fetch Groups
+          </v-btn>
+        </td>
       </tr>
       </tbody>
 

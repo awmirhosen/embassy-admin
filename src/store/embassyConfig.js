@@ -1,28 +1,27 @@
 import {defineStore} from "pinia";
-import Axios from "axios";
 import {axios} from "./index.js";
 
 
-export const useCredentialStore = defineStore("credential", {
+export const useEmbassyConfig = defineStore("embassyConfig", {
     state: () => {
         return {
-            allCredential : []
+            allEmbassyConfig : []
         }
     },
-    actions: {
-        fetchAllCredentials(loading) {
-            axios.get("/credentials", {
+    actions : {
+        fetchAllEmbassyConfig(loading) {
+            axios.get("/visa/us/embassy-config", {
                 headers : {
                     Authorization: `Bearer ${sessionStorage.getItem("token")}`
                 }
             }).then(res => {
                 loading.value = false;
                 console.log(res)
-                this.allCredential = res.data;
+                this.allEmbassyConfig = res.data;
             }).catch(err => {
                 loading.value = false;
                 console.log(err)
             })
-        },
+        }
     }
 })
