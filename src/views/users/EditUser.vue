@@ -93,23 +93,6 @@ const editUser = () => {
   });
 
   userStore.editUser(data, currentUser[0]._id, loading, success, errorReq);
-
-  // Axios.put(`http://185.208.172.123/user/${currentUser[0]._id}`, {
-  //   fullname : user.fullname,
-  //   phone_number : user.phone_number,
-  // }, {
-  //   headers : {
-  //     Authorization : sessionStorage.getItem("token")
-  //   }
-  // }).then(res => {
-  //   loading.value = false;
-  //   success.value = true;
-  //   console.log(res)
-  // }).catch((err) => {
-  //   errorReq.value = true;
-  //   loading.value = false;
-  //   console.log(err)
-  // })
 };
 </script>
 

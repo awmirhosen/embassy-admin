@@ -46,17 +46,34 @@
       </tbody>
     </v-table>
     <!-------------End table of users-------------->
+    <div class="text-center mt-8">
+      <v-progress-circular
+          v-if="loading"
+          indeterminate
+          :size="70"
+          :width="10"
+      ></v-progress-circular>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { useUsersStore } from "../../store/users";
 import { useRouter } from "vue-router";
+import {ref} from "vue";
 
+
+const loading = ref(false)
 // user pinia store
 const usersStore = useUsersStore();
 // fetch all users form pinia
-usersStore.fetchAllUsers();
+const checkUserStoreEmpty = async () => {
+  console.log(usersStore.allUsers)
+  if (usersStore.allUsers === null) {
+    await usersStore.fetchAllUsers(loading);
+  }
+}
+checkUserStoreEmpty();
 
 const router = useRouter();
 

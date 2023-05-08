@@ -90,26 +90,6 @@ const createCountry = () => {
     return
   }
 
-  // Axios.post("http://185.208.172.123/visa/country", {
-  //   name : country.name,
-  //   short : country.short_name,
-  // }, {
-  //   headers :{
-  //     Authorization: `Bearer ${sessionStorage.getItem("token")}`
-  //   }
-  // }).then(res => {
-  //   disable.value = false;
-  //   console.log(res);
-  //   country.name = null;
-  //   country.short_name = null;
-  //   response.value = "Country Created Successfully"
-  //
-  // }).catch(error => {
-  //   err.value = "something went wrong!"
-  //   disable.value = false;
-  //   console.log(error);
-  // })
-
 }
 
 </script>

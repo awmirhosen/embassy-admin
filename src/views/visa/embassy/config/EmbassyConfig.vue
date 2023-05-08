@@ -5,7 +5,8 @@
     <router-link
         to="/add_platform"
         class="me-5 v-btn--elevated v-btn text-black bg-white pa-3"
-    >Add Credential</router-link
+    >Add Credential
+    </router-link
     >
   </div>
 
@@ -14,20 +15,16 @@
     <v-table class="mt-4 rounded-xl border">
       <thead class="bg-black w-100 rounded-xl">
       <tr class="text-center ">
-        <th class="text-center text-white">Name</th>
-        <th class="text-center text-white">Make applicant</th>
+        <th class="text-center text-white">Code</th>
+        <th class="text-center text-white">Url</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="item in embassyConfigStore.allEmbassyConfig" class="text-center" :key="item.name">
-<!--        <td>{{ item.credentials.username }}</td>-->
-<!--        <td>-->
-<!--          <v-btn color="black" @click="createApplicant(item._id, item.user_id)">Make Applicant</v-btn>-->
-<!--        </td>-->
-
-        <!--        <td>-->
-        <!--          <v-btn color="black" @click="goToApplicant(item._id, item.user_id)">Applicant</v-btn>-->
-        <!--        </td>-->
+        <td>{{ item.code }}</td>
+        <td>
+          {{ item.url }}
+        </td>
       </tr>
       </tbody>
     </v-table>

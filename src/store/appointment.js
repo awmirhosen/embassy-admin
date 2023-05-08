@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import Axios from "axios";
+import {axios} from "./index.js";
 
 
 export const useAppointmentStore = defineStore("appointment", {
@@ -10,7 +11,7 @@ export const useAppointmentStore = defineStore("appointment", {
     },
     actions: {
         fetchAllApplicant(loading) {
-            Axios.get("http://185.208.172.123/appointment/us", {
+            axios.get("/appointment/us", {
                 headers : {
                     Authorization: `Bearer ${sessionStorage.getItem("token")}`
                 }

@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import Axios from "axios";
+import {axios} from "./index.js";
 
 
 export const usePlatformStore = defineStore("platform", {
@@ -10,7 +11,7 @@ export const usePlatformStore = defineStore("platform", {
     },
     actions: {
         fetchAllPlatforms(loading) {
-            Axios.get("http://185.208.172.123/platform", {
+            axios.get("/platform", {
                 headers : {
                     Authorization: `Bearer ${sessionStorage.getItem("token")}`
                 }
@@ -23,7 +24,7 @@ export const usePlatformStore = defineStore("platform", {
             })
         },
         findPlatformById(id) {
-            Axios.get("http://185.208.172.123/platform", {
+            axios.get("/platform", {
                 headers : {
                     Authorization: `Bearer ${sessionStorage.getItem("token")}`
                 }

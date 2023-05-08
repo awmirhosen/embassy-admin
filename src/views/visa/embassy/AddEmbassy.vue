@@ -77,6 +77,7 @@
 import { reactive, ref } from "vue";
 import Axios from "axios";
 import { useVisaStore } from "../../../store/visa";
+import {axios} from "../../../store/index.js";
 
 const disable = ref(false);
 const response = ref("");
@@ -104,8 +105,8 @@ const createEmbassy = () => {
 
   console.log(embassy.country_id);
 
-  Axios.post(
-    "http://185.208.172.123/visa/embassy",
+  axios.post(
+    "/visa/embassy",
     {
       name: embassy.name,
       in_country_id: embassy.in_country_id,

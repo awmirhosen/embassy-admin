@@ -27,7 +27,7 @@
         >
           <td @change="test">{{ item.name }}</td>
           <td @change="test">
-            <v-btn color="black" @click="createConfig">
+            <v-btn color="black" @click="createConfig(item._id)">
               Config
             </v-btn>
           </td>

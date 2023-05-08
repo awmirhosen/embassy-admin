@@ -17,7 +17,7 @@ export const useEmbassyConfig = defineStore("embassyConfig", {
             }).then(res => {
                 loading.value = false;
                 console.log(res)
-                this.allEmbassyConfig = res.data;
+                this.allEmbassyConfig = res.data.reverse();
             }).catch(err => {
                 loading.value = false;
                 console.log(err)

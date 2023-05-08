@@ -4,12 +4,13 @@ import { axios } from "./index";
 export const useUsersStore = defineStore("users", {
   state: () => {
     return {
-      allUsers: [],
+      allUsers: null,
     };
   },
   actions: {
     /////// get all users
-    fetchAllUsers() {
+    fetchAllUsers(loading) {
+      loading.value = true;
       axios
         .get("/user", {
           headers: {
@@ -18,7 +19,8 @@ export const useUsersStore = defineStore("users", {
         })
         .then((res) => {
           console.log(res);
-          this.allUsers = res.data;
+          loading.value = false;
+          this.allUsers = res.data.reverse();
         })
         .catch((err) => {
           console.log(err);
@@ -35,6 +37,7 @@ export const useUsersStore = defineStore("users", {
         .then((res) => {
           //// enable form & loading
           disable.value = false;
+          console.log(res);
           loading.value = false;
           /// ------- success message div show
           success.value = true;

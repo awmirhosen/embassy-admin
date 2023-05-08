@@ -73,6 +73,7 @@
 import {reactive, ref} from "vue";
 import Axios from "axios";
 import {useVisaStore} from "../../store/visa";
+import {axios} from "../../store/index.js";
 
 const disable = ref(false)
 const response = ref("")
@@ -103,7 +104,7 @@ console.log(visaStore.allEmbassies)
 const createPlatform = () => {
 
   console.log(platform.embassy_ids)
-  Axios.post("http://185.208.172.123/platform", {
+  axios.post("/platform", {
     name : platform.name,
     embassy_ids : platform.embassy_ids,
     platformType : platform.platformType,

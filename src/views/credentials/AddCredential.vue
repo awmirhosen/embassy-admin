@@ -92,6 +92,7 @@ import { useUsersStore } from "../../store/users";
 import { usePlatformStore } from "../../store/platform";
 import Axios from "axios";
 import { useRoute, useRouter } from "vue-router";
+import {axios} from "../../store/index.js";
 
 ////// loading value
 const loading = ref(true);
@@ -125,8 +126,8 @@ const resError = ref(false);
 const createCredential = () => {
   loading.value = true;
   disable.value = true;
-  Axios.post(
-    "http://185.208.172.123/credentials",
+  axios.post(
+    "/credentials",
     {
       user_id: user_id.value,
       platform_id: credentials.platform_id,

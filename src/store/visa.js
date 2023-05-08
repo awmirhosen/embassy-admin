@@ -33,7 +33,7 @@ export const useVisaStore = defineStore("visa", {
     createCountry(data, disable, response, err) {
       console.log("Enter");
       axios
-        .post("http://185.208.172.123/visa/country", data, {
+        .post("/visa/country", data, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
@@ -58,7 +58,7 @@ export const useVisaStore = defineStore("visa", {
           },
         })
         .then((res) => {
-          this.allEmbassies = res.data;
+          this.allEmbassies = res.data.reverse();
           loading.value = false;
           console.log(res);
           return res.data;
@@ -76,7 +76,7 @@ export const useVisaStore = defineStore("visa", {
           },
         })
         .then((res) => {
-          this.countryEmbassies = res.data;
+          this.countryEmbassies = res.data.reverse();
           loading.value = false;
           console.log(res);
         })

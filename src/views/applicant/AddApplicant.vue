@@ -37,6 +37,7 @@ import { reactive, ref, watch } from "vue";
 import Axios from "axios";
 import { useCredentialStore } from "../../store/credential";
 import router from "../../router";
+import {axios} from "../../store/index.js";
 
 //// route for finding param and save user id into user_id
 const route = useRoute();
@@ -67,8 +68,8 @@ const embassy_id = ref(null);
 const createAppointment = () => {
   disable.value = true;
 
-  Axios.post(
-    "http://185.208.172.123/applicant",
+  axios.post(
+    "/applicant",
     {
       user_id: user_id,
       credentials_id: credential_id,
