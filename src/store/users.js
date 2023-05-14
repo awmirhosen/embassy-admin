@@ -21,6 +21,7 @@ export const useUsersStore = defineStore("users", {
           console.log(res);
           loading.value = false;
           this.allUsers = res.data.reverse();
+          return res.data
         })
         .catch((err) => {
           console.log(err);

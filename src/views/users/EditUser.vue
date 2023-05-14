@@ -73,9 +73,8 @@ const errorReq = ref(false);
 const success = ref(false);
 
 ///// filter to find current user
-userStore.fetchAllUsers();
 const currentUser = userStore.allUsers.filter(
-  (item) => item._id == route.params.id
+  (item) => item._id === route.params.id
 );
 //create user object
 

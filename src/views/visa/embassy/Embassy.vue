@@ -5,7 +5,7 @@
     <router-link
       to="/add_embassy"
       class="me-5 v-btn--elevated v-btn text-black bg-white pa-3"
-      >Add Country</router-link
+      >Add Embassy</router-link
     >
   </div>
 

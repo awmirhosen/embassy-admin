@@ -3,7 +3,8 @@
   <!---------heading title---------------->
   <div class="d-flex justify-space-between align-center pa-4 ">
     <p class="text-h4 w-100 ms-5 mt-3">Appointment</p>
-    <router-link to="/add_platform" class="me-5 v-btn--elevated v-btn text-black bg-white pa-3">Add Appointment</router-link>
+    <router-link to="/add_platform" class="me-5 v-btn--elevated v-btn text-black bg-white pa-3">Add Appointment
+    </router-link>
   </div>
 
   <!----------------------width 75 % wrapper------------------------>
@@ -12,17 +13,20 @@
     <v-table class="mt-4">
       <thead>
       <tr>
-        <th class="text-left">
-          Name
+        <th class="text-center">
+          Embassy
         </th>
-        <th class="text-left">
-          Platform type
+        <th class="text-center">
+          Credential username
         </th>
-        <th class="text-left">
-          Embassy ids
+        <th class="text-center">
+          Delay from today
         </th>
-        <th class="text-left">
-          Action
+        <th class="text-center">
+          Date
+        </th>
+        <th class="text-center">
+          Ready
         </th>
       </tr>
       </thead>
@@ -31,10 +35,17 @@
           v-for="item in appointmentStore.allAppointment"
           :key="item.name"
       >
-        <td>{{ item.name }}</td>
-        <td>{{ item.platformType }}</td>
-        <td>
-          <v-btn color="black">Edit</v-btn>
+        <td class="text-center">{{ item.applicant_id.embassy_id.name }}</td>
+        <td class="text-center">{{ item.applicant_id.credentials_id.credentials.username }}</td>
+        <td class="text-center">{{ item.delay_from_today }}</td>
+        <td class="text-center">
+          <span class="text-blue">From</span>{{ item.take_from }}
+          <br>
+          <span class="text-blue">To</span>{{ item.take_to }}
+        </td>
+        <td class="text-center d-flex justify-center align-center">
+          <div v-if="item.is_ready_to_schedule" class="active-in-table"></div>
+          <div v-else class="inactive-in-table" ></div>
         </td>
 
       </tr>
@@ -54,10 +65,11 @@
 <script setup>
 
 
-import { ref} from "vue";
+import {ref} from "vue";
 import {usePlatformStore} from "../../store/platform";
 import {useApplicantStore} from "../../store/applicant";
 import {useAppointmentStore} from "../../store/appointment";
+
 const loading = ref(true)
 
 const appointmentStore = useAppointmentStore();
@@ -65,12 +77,19 @@ const appointmentStore = useAppointmentStore();
 appointmentStore.fetchAllApplicant(loading);
 
 
-
-
-
-
 </script>
 
 <style scoped>
-
+.active-in-table {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: green;
+}
+.inactive-in-table {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: red;
+}
 </style>

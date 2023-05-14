@@ -13,13 +13,13 @@
       <thead class="bg-black text-white">
       <tr>
         <th class="text-center text-white">
-          Applicant ID
+          Embassy
         </th>
         <th class="text-center text-white">
-          Embassy ID
+          Users name
         </th>
         <th class="text-center text-white">
-          User ID
+          Credentials username
         </th>
         <th class="text-center text-white">
           Action
@@ -32,15 +32,19 @@
           :key="item.name"
           class="text-center"
       >
-        <td>{{ item._id }}</td>
-        <td>{{ item.embassy_id }}</td>
+        <td>{{ item.embassy_id.name }}</td>
         <td>
-          {{ item.user_id }}
+          {{ item.user_id.fullname }}
         </td>
         <td>
-          <v-btn>
-            Fetch Groups
-          </v-btn>
+          {{ item.credentials_id.credentials.username}}
+        </td>
+        <td>
+          <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id._id}`} }">
+            <v-btn>
+              Fetch Group
+            </v-btn>
+          </router-link>
         </td>
       </tr>
       </tbody>

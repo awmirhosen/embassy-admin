@@ -14,16 +14,16 @@
     <!-------------start table of users-------------->
     <v-table class="mt-4 rounded-xl shadow-xl">
       <thead class="bg-black">
-        <tr>
-          <th class="text-left text-white">Name</th>
-          <th class="text-left text-white">Short Name</th>
-          <th class="text-left text-white">Action</th>
+        <tr class="text-center">
+          <th class="text-left text-center text-white">Name</th>
+          <th class="text-left text-center text-white">Short Name</th>
+          <th class="text-left text-white text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in visaStore.allCountries" :key="item.name">
-          <td>{{ item.name }}</td>
-          <td>{{ item.short }}</td>
+        <tr v-for="item in visaStore.allCountries" :key="item.name" class="text-center" >
+          <td class="text-center">{{ item.name }}</td>
+          <td class="text-center">{{ item.short }}</td>
           <td>
             <v-btn @click="showEmbassy(item._id)" color="black"
               >See Embassies</v-btn

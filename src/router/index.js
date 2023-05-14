@@ -82,7 +82,11 @@ const router = createRouter({
       name: "applicant",
       component: () => import("../views/applicant/Applicant.vue"),
     },
-
+    {
+      path: "/fetch-group/:applicant_id/:user_id",
+      name: "fetchGroup",
+      component: () => import("../views/applicant/FetchGroup.vue"),
+    },
     /////// credential
     {
       path: "/user/:user_id",

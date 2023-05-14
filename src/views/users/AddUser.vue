@@ -51,14 +51,14 @@
 
     <!------------ success user message start ---------->
     <div class="w-100" v-if="success">
-      <div class="w-100 bg-green text-white text-center pa-8 mt-4">
+      <div class="w-100 bg-green text-white text-center pa-4 mt-4 rounded-lg">
         User Created Successfully!
       </div>
     </div>
     <!------------ success user message End ---------->
     <!-------error message start ------------->
     <div class="w-100" v-if="errorResponse">
-      <div class="w-100 bg-red text-white text-center pa-8 mt-4">
+      <div class="w-100 bg-red text-white text-center pa-4 mt-4 rounded-xl">
         We Have Some Error
       </div>
     </div>

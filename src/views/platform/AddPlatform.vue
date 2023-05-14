@@ -44,7 +44,7 @@
         <!----------submit btn--------->
         <v-btn type="submit"
                class="w-100 mt-2"
-               color="blue"
+               color="black"
                prepend-icon="mdi-arrow-right-bold-outline"
                :disabled="disable"
         >
@@ -54,7 +54,7 @@
       </v-form>
 
       <div class="w-100">
-        <p v-if="response.length >= 3 && response !== null" class="w-100 pa-4 bg-green text-white text-center fs-2 mt-3">{{response}}</p>
+        <p v-if="response.length >= 3 && response !== null" class="w-100 pa-4 bg-green text-white text-center fs-2 mt-3 rounded-lg">{{response}}</p>
       </div>
 
       <div class="w-100">
