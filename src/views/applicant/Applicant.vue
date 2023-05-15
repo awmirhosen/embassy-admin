@@ -69,10 +69,13 @@ import {useApplicantStore} from "../../store/applicant";
 const loading = ref(true)
 
 const applicantStore = useApplicantStore();
+const fetchGroupFlag = ref(false)
 
 applicantStore.fetchAllApplicant(loading);
 
-
+const fetchGroup = () => {
+  fetchGroupFlag.value = true;
+}
 
 
 
