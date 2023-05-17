@@ -7,12 +7,12 @@
 
   <div v-if="!loading">
     <div class="pt-8" v-if="errorMessage">
-      <div class="w-75 rounded-lg mx-auto mt-6 text-center pa-4 bg-red text-white" >
+      <div class="w-75 rounded-lg mx-auto mt-6 text-center pa-4 bg-red text-white">
         There is some error here!
       </div>
     </div>
 
-    <div class="w-100" v-if="!errorMessage">
+    <div class="w-75 mx-auto pt-12" v-if="!errorMessage">
       <v-table class="mt-4">
         <thead>
         <tr>
@@ -32,24 +32,21 @@
         </tr>
         </thead>
         <tbody>
-        <!--    <tr-->
-        <!--        v-for="item in appointmentStore.allAppointment"-->
-        <!--        :key="item.name"-->
-        <!--    >-->
-        <!--      <td class="text-center">{{ item.applicant_id.embassy_id.name }}</td>-->
-        <!--      <td class="text-center">{{ item.applicant_id.credentials_id.credentials.username }}</td>-->
-        <!--      <td class="text-center">{{ item.delay_from_today }}</td>-->
-        <!--      <td class="text-center">-->
-        <!--        <span class="text-blue">From</span>{{ item.take_from }}-->
-        <!--        <br>-->
-        <!--        <span class="text-blue">To</span>{{ item.take_to }}-->
-        <!--      </td>-->
-        <!--      <td class="text-center d-flex justify-center align-center">-->
-        <!--        <div v-if="item.is_ready_to_schedule" class="active-in-table"></div>-->
-        <!--        <div v-else class="inactive-in-table" ></div>-->
-        <!--      </td>-->
+        <tr
+            v-for="item in fetchGroup"
+            :key="item.appoint_id"
+        >
+          <td class="text-center">{{ item.appoint_id }}</td>
+          <td class="text-center">{{ item.current_status }}</td>
+          <td class="text-center">{{ item.IVR_NUMBER }}</td>
+          <td class="text-center">
+            <RouterLink
+                :to="{name: `addAppointment`, params: { appointment_number: `${item.appoint_id}`, user_id: `${route.params.user_id}`, applicant_id: `${route.params.applicant_id}`}}">
+              <v-btn color="black">Create Appointment</v-btn>
+            </RouterLink>
+          </td>
 
-        <!--    </tr>-->
+        </tr>
         </tbody>
 
       </v-table>
@@ -70,28 +67,38 @@ const route = useRoute()
 const loading = ref(false)
 const errorMessage = ref(false)
 
-const fetchGroup = reactive([]);
+var fetchGroup = reactive([
+  {
+   appoint_id: "49171432",
+   current_status: "Pay Visa Fee",
+   IVR_NUMBER: "78593693",
+  },
+  {
+    appoint_id: "36116360",
+    current_status: "Appointment",
+    IVR_NUMBER: "70688955",
+  }
+]);
 
 
-
-
-onMounted(() => {
-  loading.value = true;
-  axios.post("applicant/fetch-my-groups", {_id: route.params.applicant_id}, {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  }).then(res => {
-    loading.value = false;
-    console.log(res);
-    console.log(res.data);
-    fetchGroup = res.data;
-  }).catch(err => {
-    loading.value = false
-    errorMessage.value = true;
-    console.log(err)
-  })
-})
+// onMounted(() => {
+//   loading.value = true;
+//   axios.post("applicant/fetch-my-groups", {_id: route.params.applicant_id}, {
+//     headers: {
+//       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+//     },
+//   }).then(res => {
+//     loading.value = false;
+//     console.log(res);
+//     console.log(res.data);
+//     fetchGroup = res.data;
+//     console.log(fetchGroup);
+//   }).catch(err => {
+//     loading.value = false
+//     errorMessage.value = true;
+//     console.log(err)
+//   })
+// })
 
 
 </script>

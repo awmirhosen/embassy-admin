@@ -1,4 +1,4 @@
 import Axios from "axios";
 export const axios = Axios.create({
-  baseURL: "https://nice-trains-battle.loca.lt/",
+  baseURL: "https://breezy-coins-make.loca.lt/",
 });

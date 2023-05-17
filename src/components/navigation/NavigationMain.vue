@@ -9,7 +9,6 @@
                    value="Dashboard"
                    class="mb-1"
                    :to="{name : 'dashboard'}"/>
-
       <v-list-group value="Pages">
 
         <template v-slot:activator="{ props }">
@@ -140,6 +139,12 @@
             :to="{name : menu.link}"
             :prepend-icon="menu.icon"/>
       </v-list-group>
+
+      <v-list-item prepend-icon="mdi-chart-bubble"
+                   title="Status"
+                   value="Status"
+                   class="mb-1"
+                   :to="{name : 'status'}"/>
 
     </v-list>
 

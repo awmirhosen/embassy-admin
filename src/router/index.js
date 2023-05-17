@@ -104,6 +104,11 @@ const router = createRouter({
       name: "appointment",
       component: () => import("../views/appointment/Appointment.vue"),
     },
+    {
+      path: "/appointment/:appointment_number/:user_id/:applicant_id",
+      name: "addAppointment",
+      component: () => import("../views/appointment/AddAppointment.vue"),
+    },
     ////// embassy config
     {
       path: "/visa/us/embassy-config/:embassy_id",
@@ -115,6 +120,13 @@ const router = createRouter({
       name: "embassyConfig",
       component: () => import("../views/visa/embassy/config/EmbassyConfig.vue"),
     },
+    /// status
+    {
+      path: "/status",
+      name: "status",
+      component: () => import("../views/status/Status.vue")
+    }
+
   ],
 });
 
