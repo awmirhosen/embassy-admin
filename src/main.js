@@ -19,8 +19,6 @@ const vuetify = createVuetify({
     directives,
 })
 
-import VueDatePicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
 
 /*Pinia*/
 import {createPinia} from "pinia";
@@ -28,7 +26,6 @@ import {createPinia} from "pinia";
 const pinia = createPinia()
 
 const app = createApp(App)
-app.component('VueDatePicker', VueDatePicker);
 app.use(pinia)
 app.use(vuetify)
 app.use(router)
