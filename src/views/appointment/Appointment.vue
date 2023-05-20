@@ -3,8 +3,6 @@
   <!---------heading title---------------->
   <div class="d-flex justify-space-between align-center pa-4 ">
     <p class="text-h4 w-100 ms-5 mt-3">Appointment</p>
-    <router-link to="/add_platform" class="me-5 v-btn--elevated v-btn text-black bg-white pa-3">Add Appointment
-    </router-link>
   </div>
 
   <!----------------------width 75 % wrapper------------------------>
@@ -28,6 +26,9 @@
         <th class="text-center">
           Ready
         </th>
+        <th class="text-center">
+          Fake
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -43,10 +44,19 @@
           <br>
           <span class="text-blue">To</span>{{ item.take_to }}
         </td>
-        <td class="text-center d-flex justify-center align-center">
-          <div v-if="item.is_ready_to_schedule" class="active-in-table"></div>
-          <div v-else class="inactive-in-table" ></div>
+        <td class="text-center">
+          <div class="d-flex justify-center align-center">
+            <div v-if="item.is_ready_to_schedule" class="active-in-table"></div>
+            <div v-else class="inactive-in-table" ></div>
+          </div>
         </td>
+        <td class="text-center">
+          <div class="d-flex justify-center align-center">
+            <div v-if="item.fake" class="active-in-table"></div>
+            <div v-else class="inactive-in-table" ></div>
+          </div>
+        </td>
+
 
       </tr>
       </tbody>
