@@ -24,6 +24,7 @@
         <th class="text-center text-white">
           Action
         </th>
+        <td></td>
       </tr>
       </thead>
       <tbody>
@@ -40,12 +41,15 @@
           {{ item.credentials_id.credentials.username}}
         </td>
         <td>
-          {{ item.user_id.password }}
+
 <!--          <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id['_id']}`} }">-->
 <!--            <v-btn>-->
 <!--              Fetch Group-->
 <!--            </v-btn>-->
 <!--          </router-link>-->
+        </td>
+        <td class="text-center">
+          <v-icon icon="mdi-delete-forever-outline" @click="deleteApplicant(item._id)" color="red"></v-icon>
         </td>
       </tr>
       </tbody>
@@ -65,10 +69,13 @@
 
 <script setup>
 
-
+import swal from 'sweetalert2';
 import { ref} from "vue";
 import {useApplicantStore} from "../../store/applicant";
-const loading = ref(true)
+import {axios} from "../../store/index.js";
+const loading = ref(true);
+
+window.Swal = swal;
 
 // applicant store calling pinia
 const applicantStore = useApplicantStore();
@@ -81,6 +88,40 @@ const fetchGroup = () => {
   fetchGroupFlag.value = true;
 }
 
+const deleteApplicant = (id) => {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios.delete(`applicant/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
+        }
+      }).then(res => {
+        console.log(res)
+        Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+        )
+        applicantStore.fetchAllApplicant(loading);
+      }).catch(err => {
+        console.log(err)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+      })
+    }
+  })
+}
 
 
 

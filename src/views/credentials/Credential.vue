@@ -23,7 +23,7 @@
         <tr v-for="item in credentialStore.allCredential" class="text-center" :key="item.name">
           <td>{{ item.credentials.username }}</td>
           <td>
-            <v-btn color="black" @click="createApplicant(item._id, item.user_id)">Make Applicant</v-btn>
+            <v-btn color="black" @click="createApplicant(item._id, item.user_id._id)">Make Applicant</v-btn>
           </td>
 
           <!--        <td>-->

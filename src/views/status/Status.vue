@@ -302,8 +302,8 @@ const deleteAppointment = (id) => {
     if (result.isConfirmed) {
 
       axios.delete(`appointment/us/${id}`, {
-        headers : {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
       }
       }).then(res => {
         console.log(res)
