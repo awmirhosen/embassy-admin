@@ -4,11 +4,12 @@
 
     <v-list>
 
-      <v-list-item prepend-icon="mdi-view-dashboard"
-                   title="Dashboard"
-                   value="Dashboard"
+      <v-list-item prepend-icon="mdi-chart-bubble"
+                   title="Status"
+                   value="Status"
                    class="mb-1"
-                   :to="{name : 'dashboard'}"/>
+                   :to="{name : 'status'}"/>
+
       <v-list-group value="Pages">
 
         <template v-slot:activator="{ props }">
@@ -75,28 +76,6 @@
 
       </v-list-group>
 
-      <v-list-group value="Applicant">
-
-        <template v-slot:activator="{ props }">
-          <v-list-item
-              class="mb-1"
-              v-bind="props"
-              prepend-icon="mdi-frequently-asked-questions"
-              title="Applicant">
-          </v-list-item>
-        </template>
-
-        <v-list-item
-            v-for="(menu, index) in subMenusApplicant"
-            :key="index"
-            :value="menu.keyword"
-            :title="menu.title"
-            class="mb-1"
-            :to="{name : menu.link}"
-            :prepend-icon="menu.icon"/>
-
-      </v-list-group>
-
       <v-list-group value="Credentials">
 
         <template v-slot:activator="{ props }">
@@ -110,6 +89,28 @@
 
         <v-list-item
             v-for="(menu, index) in subMenusCredential"
+            :key="index"
+            :value="menu.keyword"
+            :title="menu.title"
+            class="mb-1"
+            :to="{name : menu.link}"
+            :prepend-icon="menu.icon"/>
+
+      </v-list-group>
+
+      <v-list-group value="Applicant">
+
+        <template v-slot:activator="{ props }">
+          <v-list-item
+              class="mb-1"
+              v-bind="props"
+              prepend-icon="mdi-frequently-asked-questions"
+              title="Applicant">
+          </v-list-item>
+        </template>
+
+        <v-list-item
+            v-for="(menu, index) in subMenusApplicant"
             :key="index"
             :value="menu.keyword"
             :title="menu.title"
@@ -140,11 +141,7 @@
             :prepend-icon="menu.icon"/>
       </v-list-group>
 
-      <v-list-item prepend-icon="mdi-chart-bubble"
-                   title="Status"
-                   value="Status"
-                   class="mb-1"
-                   :to="{name : 'status'}"/>
+
 
     </v-list>
 

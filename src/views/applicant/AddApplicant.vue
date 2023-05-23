@@ -1,4 +1,5 @@
 <template>
+  <!-----w 75 wrapper start ------>
   <div class="w-75 mx-auto">
     <div class="w-100 pt-14">
       <div>
@@ -23,20 +24,18 @@
         </div>
 
         <div class="mt-4 w-100 pa-4 bg-red text-white rounded-xl" v-if="errRes">
-          <p class="w-100">We Have Some Error Here !!</p>
+          <p class="w-100">We Have Some Error Here!!</p>
         </div>
       </div>
     </div>
   </div>
+  <!-----w 75 wrapper End ------>
 </template>
 
 <script setup>
 import { useRoute } from "vue-router";
 import { useVisaStore } from "../../store/visa";
 import { reactive, ref, watch } from "vue";
-import Axios from "axios";
-import { useCredentialStore } from "../../store/credential";
-import router from "../../router";
 import {axios} from "../../store/index.js";
 
 //// route for finding param and save user id into user_id
@@ -68,6 +67,7 @@ const embassy_id = ref(null);
 const createAppointment = () => {
   disable.value = true;
 
+  ///// making a post request
   axios.post(
     "/applicant",
     {
@@ -92,6 +92,7 @@ const createAppointment = () => {
       console.log(err);
     });
 };
+
 </script>
 
 <style scoped>

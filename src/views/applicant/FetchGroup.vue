@@ -1,18 +1,20 @@
 <template>
-
+  <!----loading for page ------->
   <div class="w-100 text-center mb-4 pt-10 justify-center" v-if="loading">
     <v-progress-circular indeterminate :size="90" :width="10"></v-progress-circular>
     <p class="mt-8">This request can take some time, Please Be Patient.</p>
   </div>
-
+  <!----- when page loaded --------->
   <div v-if="!loading">
+    <!-------error message for bad loading request ------------->
     <div class="pt-8" v-if="errorMessage">
       <div class="w-75 rounded-lg mx-auto mt-6 text-center pa-4 bg-red text-white">
         There is some error here!
       </div>
     </div>
-
+    <!-------- w 75 % center wrapper -------------->
     <div class="w-75 mx-auto pt-12" v-if="!errorMessage">
+      <!---------table start ----------->
       <v-table class="mt-4">
         <thead>
         <tr>
@@ -28,7 +30,6 @@
           <th class="text-center">
             Action
           </th>
-
         </tr>
         </thead>
         <tbody>
@@ -45,10 +46,9 @@
               <v-btn color="black">Create Appointment</v-btn>
             </RouterLink>
           </td>
-
         </tr>
         </tbody>
-
+        <!---------table End ----------->
       </v-table>
     </div>
   </div>
@@ -61,44 +61,35 @@ import {useRoute} from "vue-router";
 import {onMounted, reactive, ref} from "vue";
 import {axios} from "../../store/index.js";
 
-
+// route for params
 const route = useRoute()
-
+//loading and error message
 const loading = ref(false)
 const errorMessage = ref(false)
-
-var fetchGroup = reactive([
-  {
-   appoint_id: "49171432",
-   current_status: "Pay Visa Fee",
-   IVR_NUMBER: "78593693",
-  },
-  {
-    appoint_id: "36116360",
-    current_status: "Appointment",
-    IVR_NUMBER: "70688955",
-  }
-]);
+// fetch group request data
+var fetchGroup = reactive([]);
 
 
-// onMounted(() => {
-//   loading.value = true;
-//   axios.post("applicant/fetch-my-groups", {_id: route.params.applicant_id}, {
-//     headers: {
-//       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-//     },
-//   }).then(res => {
-//     loading.value = false;
-//     console.log(res);
-//     console.log(res.data);
-//     fetchGroup = res.data;
-//     console.log(fetchGroup);
-//   }).catch(err => {
-//     loading.value = false
-//     errorMessage.value = true;
-//     console.log(err)
-//   })
-// })
+// on mounted for mounting component request
+onMounted(() => {
+  // loading get true
+  loading.value = true;
+  axios.post("applicant/fetch-my-groups", {_id: route.params.applicant_id}, {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  }).then(res => {
+    loading.value = false;
+    console.log(res);
+    console.log(res.data);
+    fetchGroup = res.data;
+    console.log(fetchGroup);
+  }).catch(err => {
+    loading.value = false
+    errorMessage.value = true;
+    console.log(err)
+  })
+})
 
 
 </script>

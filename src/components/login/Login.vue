@@ -79,7 +79,7 @@ axios
     .then((res) => {
       console.log(res.data.access_token);
       sessionStorage.setItem("token", res.data.access_token);
-      router.push("/");
+      router.push("/status");
     })
     .catch((err) => {
       console.log(err);

@@ -16,10 +16,10 @@
           Embassy
         </th>
         <th class="text-center text-white">
-          Users name
+          Credentials username
         </th>
         <th class="text-center text-white">
-          Credentials username
+
         </th>
         <th class="text-center text-white">
           Action
@@ -34,23 +34,26 @@
       >
         <td>{{ item.embassy_id.name }}</td>
         <td>
-          {{ item.user_id.fullname }}
+          {{ item.credentials_id.credentials.username }}
         </td>
         <td>
           {{ item.credentials_id.credentials.username}}
         </td>
         <td>
-          <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id._id}`} }">
-            <v-btn>
-              Fetch Group
-            </v-btn>
-          </router-link>
+          {{ item.user_id.password }}
+<!--          <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id['_id']}`} }">-->
+<!--            <v-btn>-->
+<!--              Fetch Group-->
+<!--            </v-btn>-->
+<!--          </router-link>-->
         </td>
       </tr>
       </tbody>
 
     </v-table>
     <!-------------End table of users-------------->
+
+    <!------------Loading for request ------------->
     <div class="text-center mt-8">
       <v-progress-circular v-if="loading" indeterminate :size="70" :width="10"></v-progress-circular>
     </div>
@@ -64,13 +67,14 @@
 
 
 import { ref} from "vue";
-import {usePlatformStore} from "../../store/platform";
 import {useApplicantStore} from "../../store/applicant";
 const loading = ref(true)
 
+// applicant store calling pinia
 const applicantStore = useApplicantStore();
+// flag
 const fetchGroupFlag = ref(false)
-
+// fetch all applicant
 applicantStore.fetchAllApplicant(loading);
 
 const fetchGroup = () => {

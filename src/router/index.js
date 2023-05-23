@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "../views/Dashboard.vue";
+
 // import {el} from "vuetify/lib/locale";
 
 const router = createRouter({
@@ -11,12 +11,7 @@ const router = createRouter({
       name: "login",
       component: () => import("../components/login/Login.vue"),
     },
-    //////dashboard
-    {
-      path: "/",
-      name: "dashboard",
-      component: Dashboard,
-    },
+
     //////client users
     {
       path: "/users",
@@ -108,6 +103,11 @@ const router = createRouter({
       path: "/appointment/:appointment_number/:user_id/:applicant_id",
       name: "addAppointment",
       component: () => import("../views/appointment/AddAppointment.vue"),
+    },
+    {
+      path: "/appointment/:appointment_id/:take_from/:take_to/:delay_from_today/:status/:fake",
+      name: "editAppointment",
+      component: () => import("../views/appointment/EditAppointment.vue"),
     },
     ////// embassy config
     {

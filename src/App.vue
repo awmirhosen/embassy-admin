@@ -15,7 +15,7 @@ import NavigationMain from "./components/navigation/NavigationMain.vue";
 import { useRoute } from "vue-router";
 import { watch } from "vue";
 import { useThemeStore } from "./store/theme";
-import NotificationAction from "./components/notification/NotificationAction.vue";
+
 
 /** initialize theme store  **/
 const pageStore = useThemeStore();
