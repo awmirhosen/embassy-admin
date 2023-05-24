@@ -38,9 +38,6 @@
           {{ item.credentials_id.credentials.username }}
         </td>
         <td>
-          {{ item.credentials_id.credentials.username}}
-        </td>
-        <td>
           <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id['_id']}`} }">
             <v-btn>
               Fetch Group
