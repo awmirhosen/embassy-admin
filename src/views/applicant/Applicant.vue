@@ -41,12 +41,11 @@
           {{ item.credentials_id.credentials.username}}
         </td>
         <td>
-
-<!--          <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id['_id']}`} }">-->
-<!--            <v-btn>-->
-<!--              Fetch Group-->
-<!--            </v-btn>-->
-<!--          </router-link>-->
+          <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id['_id']}`} }">
+            <v-btn>
+              Fetch Group
+            </v-btn>
+          </router-link>
         </td>
         <td class="text-center">
           <v-icon icon="mdi-delete-forever-outline" @click="deleteApplicant(item._id)" color="red"></v-icon>
