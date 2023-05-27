@@ -135,13 +135,7 @@ const createCredential = () => {
         username: credentials.credentials.username,
         password: credentials.credentials.password,
       },
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    }
-  )
+    })
     .then((res) => {
       loading.value = false;
       success.value = true;

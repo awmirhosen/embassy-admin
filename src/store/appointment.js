@@ -11,11 +11,7 @@ export const useAppointmentStore = defineStore("appointment", {
     },
     actions: {
         fetchAllApplicant(loading) {
-            axios.get("/appointment/us", {
-                headers : {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                }
-            }).then(res => {
+            axios.get("/appointment/us").then(res => {
                 loading.value = false;
                 this.allAppointment = res.data;
                 console.log(res)

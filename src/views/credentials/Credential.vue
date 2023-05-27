@@ -74,11 +74,6 @@ const createApplicant = (credential_id, user_id) => {
   router.push(`/applicant/${credential_id}/${user_id}`)
 }
 
-// const router = useRouter();
-//
-// const goToApplicant = (credential_id, user_id) => {
-//   router.push(`/applicant/${credential_id}/${user_id}`);
-// };
 </script>
 
 <style scoped></style>

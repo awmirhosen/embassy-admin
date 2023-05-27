@@ -97,11 +97,7 @@ const appointmentData = reactive({
 
 const submitAppointment = () => {
   disable.value = true;
-  axios.post("appointment/us/", appointmentData, {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  }).then(res => {
+  axios.post("appointment/us/", appointmentData).then(res => {
     disable.value = false;
     loading.value = false;
     console.log(res);

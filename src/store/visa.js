@@ -13,11 +13,7 @@ export const useVisaStore = defineStore("visa", {
     //// get all contries
     fetchAllCountries(loading) {
       axios
-        .get("/visa/country", {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .get("/visa/country")
         .then((res) => {
           console.log(res);
           this.allCountries = res.data;
@@ -33,11 +29,7 @@ export const useVisaStore = defineStore("visa", {
     createCountry(data, disable, response, err) {
       console.log("Enter");
       axios
-        .post("/visa/country", data, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .post("/visa/country", data)
         .then((res) => {
           disable.value = false;
           console.log(res);
@@ -52,11 +44,7 @@ export const useVisaStore = defineStore("visa", {
     ////// all embassies
     fetchAllEmbassies(loading) {
       axios
-        .get("/visa/embassy", {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .get("/visa/embassy")
         .then((res) => {
           this.allEmbassies = res.data.reverse();
           loading.value = false;
@@ -70,11 +58,7 @@ export const useVisaStore = defineStore("visa", {
     },
     fetchCountryEmbassies(loading, country_id) {
       axios
-        .get(`/visa/embassy/${country_id}`, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .get(`/visa/embassy/${country_id}`)
         .then((res) => {
           this.countryEmbassies = res.data.reverse();
           loading.value = false;

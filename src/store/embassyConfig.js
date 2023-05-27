@@ -10,11 +10,7 @@ export const useEmbassyConfig = defineStore("embassyConfig", {
     },
     actions : {
         fetchAllEmbassyConfig(loading) {
-            axios.get("/visa/us/embassy-config", {
-                headers : {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                }
-            }).then(res => {
+            axios.get("/visa/us/embassy-config").then(res => {
                 loading.value = false;
                 console.log(res)
                 this.allEmbassyConfig = res.data.reverse();

@@ -18,9 +18,6 @@
         <th class="text-center bg-black text-white">
           Platform type
         </th>
-<!--        <th class="text-center">-->
-<!--          Embassy ids-->
-<!--        </th>-->
       </tr>
       </thead>
       <tbody>
@@ -33,12 +30,6 @@
           <p class="w-100 text-center" v-if="item.platformType == 1">UsVisualInfo</p>
           <p class="w-100 text-center" v-else="item.platformType == 2">CKgsir</p>
         </td>
-<!--        <td class="text-center" >-->
-<!--          <div class="d-flex justify-center flex-column">-->
-<!--            <p class="mx-4" v-for="embassy in item.embassy_ids">{{ embassy }}</p>-->
-<!--          </div>-->
-<!--        </td>-->
-
       </tr>
       </tbody>
 

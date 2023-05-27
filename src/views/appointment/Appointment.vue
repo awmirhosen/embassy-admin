@@ -112,11 +112,7 @@ const deleteAppointment = (id) => {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      axios.delete(`appointment/us/${id}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`
-        }
-      }).then(res => {
+      axios.delete(`appointment/us/${id}`).then(res => {
         console.log(res)
         Swal.fire(
             'Deleted!',

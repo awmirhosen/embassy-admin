@@ -74,13 +74,7 @@ const createAppointment = () => {
       user_id: user_id,
       credentials_id: credential_id,
       embassy_id: embassy_id.value,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    }
-  )
+    })
     .then((res) => {
       disable.value = false;
       console.log(res);

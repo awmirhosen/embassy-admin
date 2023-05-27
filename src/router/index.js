@@ -133,7 +133,7 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   if (
     // make sure the user is authenticated
-    sessionStorage.getItem("token") === null &&
+    localStorage.getItem("token") === null &&
     //  Avoid an infinite redirect
     to.name !== "login"
   ) {

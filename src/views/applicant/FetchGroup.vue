@@ -74,11 +74,7 @@ var fetchGroup = reactive([]);
 onMounted(() => {
   // loading get true
   loading.value = true;
-  axios.post("applicant/fetch-my-groups", {_id: route.params.applicant_id}, {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  }).then(res => {
+  axios.post("applicant/fetch-my-groups", {_id: route.params.applicant_id}).then(res => {
     loading.value = false;
     console.log(res);
     console.log(res.data);

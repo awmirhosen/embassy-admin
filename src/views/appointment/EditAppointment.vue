@@ -92,11 +92,7 @@ const updateAppointment = () => {
   disable.value = true;
   console.log(appointmentData);
 
-  axios.put(`appointment/us/${route.params.appointment_id}`, appointmentData, {
-    headers : {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`
-    }
-  }).then(res => {
+  axios.put(`appointment/us/${route.params.appointment_id}`, appointmentData).then(res => {
     console.log(res)
     disable.value = false;
     sucMessage.value = true;

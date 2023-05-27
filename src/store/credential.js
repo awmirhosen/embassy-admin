@@ -11,11 +11,7 @@ export const useCredentialStore = defineStore("credential", {
     },
     actions: {
         fetchAllCredentials(loading) {
-            axios.get("/credentials", {
-                headers : {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                }
-            }).then(res => {
+            axios.get("/credentials").then(res => {
                 loading.value = false;
                 console.log(res)
                 this.allCredential = res.data;

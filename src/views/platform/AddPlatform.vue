@@ -108,10 +108,6 @@ const createPlatform = () => {
     name : platform.name,
     embassy_ids : platform.embassy_ids,
     platformType : platform.platformType,
-  }, {
-    headers :{
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`
-    }
   }).then(res => {
     disable.value = false;
     console.log(res);

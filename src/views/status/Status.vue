@@ -221,11 +221,7 @@ onMounted(() => {
   loading.value = true;
 
   const getData = async() => {
-    const response = await axios.get("stat/us", {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    }).then(res => {
+    const response = await axios.get("stat/us").then(res => {
       console.log(res.data);
       loading.value = false;
       allStatusData = res.data
@@ -301,11 +297,7 @@ const deleteAppointment = (id) => {
   }).then((result) => {
     if (result.isConfirmed) {
 
-      axios.delete(`appointment/us/${id}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`
-      }
-      }).then(res => {
+      axios.delete(`appointment/us/${id}`).then(res => {
         console.log(res)
         Swal.fire(
             'Deleted!',

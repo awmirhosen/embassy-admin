@@ -11,11 +11,7 @@ export const usePlatformStore = defineStore("platform", {
     },
     actions: {
         fetchAllPlatforms(loading) {
-            axios.get("/platform", {
-                headers : {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                }
-            }).then(res => {
+            axios.get("/platform").then(res => {
                 loading.value = false;
                 this.allPlatforms = res.data;
                 console.log(res)
@@ -24,11 +20,7 @@ export const usePlatformStore = defineStore("platform", {
             })
         },
         findPlatformById(id) {
-            axios.get("/platform", {
-                headers : {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                }
-            }).then(res => {
+            axios.get("/platform").then(res => {
                 res.data.forEach("dd")
                 loading.value = false;
                 this.allPlatforms = res.data;

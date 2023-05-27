@@ -78,7 +78,7 @@ axios
     .post("/auths/token", formData)
     .then((res) => {
       console.log(res.data.access_token);
-      sessionStorage.setItem("token", res.data.access_token);
+      localStorage.setItem("token", res.data.access_token);
       router.push("/status");
     })
     .catch((err) => {

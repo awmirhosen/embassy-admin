@@ -12,11 +12,7 @@ export const useUsersStore = defineStore("users", {
     fetchAllUsers(loading) {
       loading.value = true;
       axios
-        .get("/user", {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .get("/user")
         .then((res) => {
           console.log(res);
           loading.value = false;
@@ -30,11 +26,7 @@ export const useUsersStore = defineStore("users", {
     /////// create user
     createUser(data, disable, loading, success, errorResponse) {
       axios
-        .post("/user", data, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .post("/user", data)
         .then((res) => {
           //// enable form & loading
           disable.value = false;
@@ -55,11 +47,7 @@ export const useUsersStore = defineStore("users", {
     editUser(data, user_id, loading, success, errorReq) {
       console.log("enter the function");
       axios
-        .put(`/user/${user_id}`, data, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        })
+        .put(`/user/${user_id}`, data)
         .then((res) => {
           console.log("res");
           loading.value = false;

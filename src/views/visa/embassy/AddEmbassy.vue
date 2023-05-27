@@ -111,13 +111,7 @@ const createEmbassy = () => {
       name: embassy.name,
       in_country_id: embassy.in_country_id,
       country_id: embassy.country_id,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-    }
-  )
+    },)
     .then((res) => {
       disable.value = false;
       console.log(res);
