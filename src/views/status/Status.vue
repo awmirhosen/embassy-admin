@@ -221,7 +221,7 @@ onMounted(() => {
   loading.value = true;
 
   const getData = async() => {
-    const response = await axios.get("stat/us").then(res => {
+    const response = await axios.get("/stat/us").then(res => {
       console.log(res.data);
       loading.value = false;
       allStatusData = res.data
