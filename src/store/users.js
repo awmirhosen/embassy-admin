@@ -10,6 +10,7 @@ export const useUsersStore = defineStore("users", {
   actions: {
     /////// get all users
     fetchAllUsers(loading) {
+        console.log(localStorage.getItem("token"))
       loading.value = true;
       axios
         .get("/user")

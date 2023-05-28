@@ -51,8 +51,9 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import {axios} from "../../store/index.js" ;
+import { axiosLogin } from "../../store/index.js" ;
 import { useRouter } from "vue-router";
+
 
 const user = reactive({
   username: null,
@@ -74,7 +75,7 @@ const submitLogin = () => {
   formData.append("username", user.username);
   formData.append("password", user.password);
 
-axios
+axiosLogin
     .post("/auths/token", formData)
     .then((res) => {
       console.log(res.data.access_token);

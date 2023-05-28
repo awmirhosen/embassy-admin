@@ -38,13 +38,9 @@
           {{ item.credentials_id.credentials.username }}
         </td>
         <td>
-<<<<<<< HEAD
           {{ item.credentials_id.credentials.username}}
         </td>
         <td>
-
-=======
->>>>>>> 316a7c2dd5240aff1b0bf4696b75afc43e96a46d
           <router-link :to="{ name: 'fetchGroup', params: {applicant_id : `${item._id}`, user_id: `${item.user_id['_id']}`} }">
             <v-btn>
               Fetch Group
