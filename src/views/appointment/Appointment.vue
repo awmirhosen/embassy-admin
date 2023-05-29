@@ -131,8 +131,14 @@ const deleteAppointment = (id) => {
   })
 }
 
-const editAppointment = (id) => {
-  router.push(`/appointment/${id}`)
+const editAppointment = (id, take_from, take_to, delay_from_today, status, fake) => {
+  if (take_to === "") {
+    take_to = null
+  }
+  if (take_from === "") {
+    take_from === null
+  }
+  router.push(`/appointment/${id}/${take_from}/${take_to}/${delay_from_today}/${status}/${fake}`)
 }
 
 </script>

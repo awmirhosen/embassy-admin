@@ -2,7 +2,6 @@
   <v-app>
     <div>
       <NavigationMain />
-      <NotificationAction />
       <v-main class="back-cus">
         <router-view></router-view>
       </v-main>

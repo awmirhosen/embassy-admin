@@ -32,6 +32,7 @@
           class="w-100 mt-2 mb-3"
           color="black"
           prepend-icon="mdi-arrow-right-bold-outline"
+          :disabled="disable"
         >
           Submit
         </v-btn>
@@ -51,9 +52,10 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import { axiosLogin } from "../../store/index.js" ;
+import {axios, axiosLogin} from "../../store/index.js" ;
 import { useRouter } from "vue-router";
 
+const disable = ref(false);
 
 const user = reactive({
   username: null,
@@ -70,23 +72,31 @@ const formData = new FormData();
 
 const router = useRouter();
 
-// submit function
+// submit login function
 const submitLogin = () => {
+  disable.value = true;
+  // appending form data
   formData.append("username", user.username);
   formData.append("password", user.password);
 
-axiosLogin
-    .post("/auths/token", formData)
+axios
+    .post("auths/token", formData)
     .then((res) => {
-      console.log(res.data.access_token);
+      disable.value = false;
       localStorage.setItem("token", res.data.access_token);
+      axios.interceptors.request.use(function (config) {
+        config.headers.Authorization = "Bearer "+localStorage.getItem("token");
+        return config;
+      });
       router.push("/status");
     })
     .catch((err) => {
+      disable.value = false;
       console.log(err);
       snackbar.value = true;
     });
 };
+
 </script>
 
 <style scoped>

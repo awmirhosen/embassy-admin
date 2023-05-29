@@ -7,5 +7,5 @@ export const axios = Axios.create({
 });
 
 export const axiosLogin = Axios.create({
-  baseURL: "http://156.253.5.224",
+  baseURL: "http://156.253.5.224/",
 });

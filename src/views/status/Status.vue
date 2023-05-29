@@ -45,30 +45,30 @@
               </thead>
               <tbody>
               <tr
-                  v-for="item in statusEmbassyData.apois"
-                  :key="item.applicant_id"
+                  v-for="embassyData in statusEmbassyData.apois"
+                  :key="embassyData.applicant_id"
               >
-                <td class="text-center">{{ item.user.fullname }}</td>
-                <td class="text-center">{{ item.appointment_number }}</td>
-                <td class="text-center">{{ item.delay_from_today }}</td>
-                <td class="text-center">{{ item.status }}</td>
+                <td class="text-center" @click="embassyTest">{{ embassyData.user.fullname }}</td>
+                <td class="text-center">{{ embassyData.appointment_number }}</td>
+                <td class="text-center">{{ embassyData.delay_from_today }}</td>
+                <td class="text-center">{{ embassyData.status }}</td>
                 <td class="text-center">
-                  <span class="text-blue">From</span>{{ item.take_from }}
+                  <span class="text-blue">From</span>{{ embassyData.take_from }}
                   <br>
-                  <span class="text-blue">To</span>{{ item.take_to }}
+                  <span class="text-blue">To</span>{{ embassyData.take_to }}
                 </td>
                 <td class="text-center">
                   <div class="d-flex justify-center align-center">
-                    <div v-if="!item.fake" class="active-in-table"></div>
+                    <div v-if="!embassyData.fake" class="active-in-table"></div>
                     <div v-else class="inactive-in-table" ></div>
                   </div>
                 </td>
                 <td class="text-center d-flex align-center justify-center">
                   <div class="mx-2 cursor-pointer">
-                    <v-icon icon="mdi-pencil" color="blue" @click="editAppointment(item._id, item.take_from, item.take_to, item.delay_from_today, item.status, item.fake)"></v-icon>
+                    <v-icon icon="mdi-pencil" color="blue" @click="editAppointment(embassyData._id, embassyData.take_from, embassyData.take_to, embassyData.delay_from_today, item.status, item.fake)"></v-icon>
                   </div>
                   <div class="mx-2 cursor-pointer">
-                    <v-icon icon="mdi-delete-forever-outline" @click="deleteAppointment(item._id)" color="red"></v-icon>
+                    <v-icon icon="mdi-delete-forever-outline" @click="deleteAppointment(embassyData._id)" color="red"></v-icon>
                   </div>
                 </td>
               </tr>
@@ -151,7 +151,6 @@ import {axios} from "../../store/index.js";
 import {useRoute, useRouter} from "vue-router";
 import swal from "sweetalert2";
 
-
 const loading = ref(true);
 var allStatusData = reactive([]);
 var statusEmbassyData = reactive([]);
@@ -216,6 +215,10 @@ const lastBlocked = (date) => {
 
 }
 
+const embassyTest = () => {
+  console.log(statusEmbassyData);
+}
+
 
 onMounted(() => {
   loading.value = true;
@@ -243,13 +246,14 @@ onMounted(() => {
 const loadingStatus = ref(false)
 window.Swal = swal;
 const changeStatus = (e) => {
-
+  
   loadingStatus.value = false;
+  // console.log(e.target.value)
 
   allStatusData.forEach(item => {
     if (item.embassy_id._id === e.target.value) {
       statusEmbassyData = item;
-      console.log(item)
+      console.log(statusEmbassyData)
       loadingStatus.value = true;
     }
   })
@@ -270,15 +274,10 @@ const changeStatus = (e) => {
   }
   timem();
 
-  console.log(statusEmbassyData.lastBlockTime)
   if (statusEmbassyData.lastBlockTime !== 0) {
     lastBlocked(statusEmbassyData.lastBlockTime)
-    console.log(new Date());
   }else {
     blockTimeFlag.value = true;
-    lastBlocked(1684665295);
-    console.log("naaa")
-
   }
 
 }
@@ -376,7 +375,6 @@ const editAppointment = (id, take_from, take_to, delay_from_today, status, fake)
   right:-10%;
 }
 
-
 .status-select-box {
   width: 100%;
   border: none;
@@ -389,7 +387,6 @@ const editAppointment = (id, take_from, take_to, delay_from_today, status, fake)
   transition: all linear 200ms;
   border-radius: 12px;
 }
-
 
 .status-select-box:focus {
   border: none;
