@@ -6,14 +6,18 @@ export const useStatusStore = defineStore("status", {
         return {
             allStatusData: [],
             embassiesName: [],
+            statusEmbassyData: [],
+            appointmentDataTable: [],
         }
     },
     actions: {
-        fetchAllStatus(laoding, errMessage) {
-             axios.get("/stat/us").then(res => {
+        fetchAllStatus(loading, errMessage) {
+            this.embassiesName = [];
+            axios.get("/stat/us").then(res => {
                 console.log(res.data);
                 loading.value = false;
-                this.allStatusData = res.data
+                this.allStatusData = res.data;
+                console.log(res.data)
                 this.allStatusData.forEach((item) => {
                     this.embassiesName.push({name: item.embassy_id.name, id: item.embassy_id._id})
                 })

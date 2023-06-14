@@ -4,11 +4,12 @@
     <v-progress-circular indeterminate :size="125" :width="7"></v-progress-circular>
     <p class="text-h3 mt-4">This Request can take a while</p>
   </div>
+
   <div class="w-75 mx-auto pt-12" v-else>
 
     <select class="status-select-box" name="" @change="changeStatus" >
       <option value="none" @click="changeStatus">Chose your Embassy</option>
-      <option v-for="(embassySelect, index) in embassiesName" :value="embassySelect.id" @click="changeStatus(e)" >{{ embassySelect.name }}</option>
+      <option v-for="(embassySelect, index) in statusStore.embassiesName" :value="embassySelect.id" @click="changeStatus(e)" >{{ embassySelect.name }}</option>
     </select>
 
     <div v-if="loadingStatus">
@@ -45,10 +46,10 @@
               </thead>
               <tbody>
               <tr
-                  v-for="embassyData in statusEmbassyData.apois"
+                  v-for="embassyData in statusStore.statusEmbassyData.apois"
                   :key="embassyData.applicant_id"
               >
-                <td class="text-center" @click="embassyTest">{{ embassyData.user.fullname }}</td>
+                <td class="text-center">{{ embassyData.user.fullname }}</td>
                 <td class="text-center">{{ embassyData.appointment_number }}</td>
                 <td class="text-center">{{ embassyData.delay_from_today }}</td>
                 <td class="text-center">{{ embassyData.status }}</td>
@@ -65,7 +66,7 @@
                 </td>
                 <td class="text-center d-flex align-center justify-center">
                   <div class="mx-2 cursor-pointer">
-                    <v-icon icon="mdi-pencil" color="blue" @click="editAppointment(embassyData._id, embassyData.take_from, embassyData.take_to, embassyData.delay_from_today, item.status, item.fake)"></v-icon>
+                    <v-icon icon="mdi-pencil" color="blue" @click="editAppointment(embassyData._id, embassyData.take_from, embassyData.take_to, embassyData.delay_from_today, embassyData.status, embassyData.fake)"></v-icon>
                   </div>
                   <div class="mx-2 cursor-pointer">
                     <v-icon icon="mdi-delete-forever-outline" @click="deleteAppointment(embassyData._id)" color="red"></v-icon>
@@ -84,7 +85,7 @@
             <section>
               <p class="w-100 text-h6">Best time for today</p>
               <br>
-              <p class="w-100 text-h6">{{ statusEmbassyData.best_time_today_found.best_time_today}}</p>
+              <p class="w-100 text-h6">{{ statusStore.statusEmbassyData.best_time_today_found.best_time_today}}</p>
               <br>
               <p class="w-100 text-h6">{{ todayBestTime }}</p>
             </section>
@@ -150,16 +151,18 @@ import {onMounted, reactive, ref, watch} from "vue";
 import {axios} from "../../store/index.js";
 import {useRoute, useRouter} from "vue-router";
 import swal from "sweetalert2";
+import {useStatusStore} from "../../store/status.js";
 
 const loading = ref(true);
+const errMessage = ref(false);
+
+const statusStore = useStatusStore();
+
+// all status data in mounted function call
 var allStatusData = reactive([]);
 var statusEmbassyData = reactive([]);
-const embassiesName = reactive([
-  {name: "ddd", id:1},
-  {name: "dd33d", id:2}
-]);
-
-const errMessage = ref(false);
+const embassiesName = reactive([]);
+const loadingStatus = ref(false)
 
 const lastBlockTime = reactive({
   years: "",
@@ -168,9 +171,10 @@ const lastBlockTime = reactive({
   hours: "",
   time: "",
 })
-
 var todayBestTime = null;
 const blockTimeFlag = ref(false)
+// swal config
+window.Swal = swal;
 
 const lastBlocked = (date) => {
   console.log("current date",new Date().getTime())
@@ -215,52 +219,30 @@ const lastBlocked = (date) => {
 
 }
 
-const embassyTest = () => {
-  console.log(statusEmbassyData);
-}
-
-
 onMounted(() => {
   loading.value = true;
 
-  const getData = async() => {
-    const response = await axios.get("/stat/us").then(res => {
-      console.log(res.data);
-      loading.value = false;
-      allStatusData = res.data
-      allStatusData.forEach((item) => {
-        embassiesName.push({name: item.embassy_id.name, id: item.embassy_id._id})
-      })
-      console.log(embassiesName)
-      allStatusData = res.data;
-    }).catch(err => {
-      console.log(err);
-      errMessage.value = true;
-    })
-  }
+  statusStore.fetchAllStatus(loading, errMessage);
 
-  getData();
 
 })
 
-const loadingStatus = ref(false)
-window.Swal = swal;
 const changeStatus = (e) => {
   
   loadingStatus.value = false;
   // console.log(e.target.value)
 
-  allStatusData.forEach(item => {
+  statusStore.allStatusData.forEach(item => {
     if (item.embassy_id._id === e.target.value) {
-      statusEmbassyData = item;
+      statusStore.statusEmbassyData = item;
+      // appointmentDataTable = statusEmbassyData.apois
       console.log(statusEmbassyData)
       loadingStatus.value = true;
     }
   })
 
   const timem = () => {
-    const timestamp = statusEmbassyData.best_time_today_found.timestampt
-
+    const timestamp = statusStore.statusEmbassyData.best_time_today_found.timestampt
     var date = new Date(timestamp * 1000);
 // Hours part from the timestamp
     var hours = date.getHours();
@@ -274,8 +256,8 @@ const changeStatus = (e) => {
   }
   timem();
 
-  if (statusEmbassyData.lastBlockTime !== 0) {
-    lastBlocked(statusEmbassyData.lastBlockTime)
+  if (statusStore.statusEmbassyData.lastBlockTime !== 0) {
+    lastBlocked(statusStore.statusEmbassyData.lastBlockTime)
   }else {
     blockTimeFlag.value = true;
   }

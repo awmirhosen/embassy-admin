@@ -79,7 +79,7 @@ const submitLogin = () => {
   formData.append("username", user.username);
   formData.append("password", user.password);
 
-axios
+axiosLogin
     .post("auths/token", formData)
     .then((res) => {
       disable.value = false;
