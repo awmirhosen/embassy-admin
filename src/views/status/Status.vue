@@ -9,14 +9,17 @@
 
     <select class="status-select-box" name="" @change="changeStatus" >
       <option value="none" @click="changeStatus">Chose your Embassy</option>
-      <option v-for="(embassySelect, index) in statusStore.embassiesName" :value="embassySelect.id" @click="changeStatus(e)" >{{ embassySelect.name }}</option>
+      <option v-for="(embassySelect, index) in statusStore.embassiesName" :key="index" :value="embassySelect.id" @click="changeStatus(e)" >{{ embassySelect.name }}</option>
     </select>
 
     <div v-if="loadingStatus">
       <div class="w-100 mt-8">
         <div class="w-100 text-center">
           <div class="w-100">
-            <p class="text-left text-h5 mt-8 w-100">Appointments:</p>
+            <div class="d-flex">
+              <p class="text-left mx-3 text-h5 mt-8 w-100">Appointments:</p>
+              <p class="text-left mx-3 text-h5 mt-8 w-100" @click="fakeFilter">Fake</p>
+            </div>
             <!-----------table of appointment started------------->
             <v-table class="mt-4 rounded-lg">
               <thead class="bg-black">
@@ -221,10 +224,7 @@ const lastBlocked = (date) => {
 
 onMounted(() => {
   loading.value = true;
-
   statusStore.fetchAllStatus(loading, errMessage);
-
-
 })
 
 const changeStatus = (e) => {

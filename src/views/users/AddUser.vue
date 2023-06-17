@@ -23,7 +23,7 @@
         />
         <v-text-field
           class="mt-8"
-          label="Phone number"
+          label="Phone number / email"
           v-model="user.phone_number"
           :rules="[(v) => !!v || 'Field is required']"
         />

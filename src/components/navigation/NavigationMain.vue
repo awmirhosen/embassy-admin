@@ -4,12 +4,18 @@
 
     <v-list>
 
+      <v-list-item prepend-icon="mdi-home"
+                   title="Home"
+                   value="Home"
+                   class="mb-1"
+                   :to="{name : 'step'}"
+      />
       <v-list-item prepend-icon="mdi-chart-bubble"
                    title="Status"
                    value="Status"
                    class="mb-1"
-                   :to="{name : 'status'}"/>
-
+                   :to="{name : 'status'}"
+      />
       <v-list-group value="Pages">
 
         <template v-slot:activator="{ props }">

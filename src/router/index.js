@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+
 // import {el} from "vuetify/lib/locale";
 
 const router = createRouter({
@@ -125,7 +126,14 @@ const router = createRouter({
       path: "/status",
       name: "status",
       component: () => import("../views/status/Status.vue")
+    },
+    /// step by step
+    {
+      path: "/",
+      name: "step",
+      component: () => import("../views/step-by-step/Home.vue")
     }
+
 
   ],
 });
