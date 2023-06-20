@@ -3,7 +3,6 @@
   <!---------heading title---------------->
   <div class="d-flex justify-space-between align-center pa-4 ">
     <p class="text-h4 w-100 ms-5 mt-3">Applicant</p>
-    <router-link to="/add_platform" class="me-5 v-btn--elevated v-btn text-black bg-white pa-3">Add Applicant</router-link>
   </div>
 
   <!----------------------width 75 % wrapper------------------------>

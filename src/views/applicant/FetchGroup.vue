@@ -8,8 +8,8 @@
   <div v-if="!loading">
     <!-------error message for bad loading request ------------->
     <div class="pt-8" v-if="errorMessage">
-      <div class="w-75 rounded-lg mx-auto mt-6 text-center pa-4 bg-red text-white">
-        There is some error here!
+      <div class="w-75 rounded-lg mx-auto mt-6 text-center pa-4 bg-yellow text-black">
+        This user doesn't have appointment number or its not active!
       </div>
     </div>
     <!-------- w 75 % center wrapper -------------->

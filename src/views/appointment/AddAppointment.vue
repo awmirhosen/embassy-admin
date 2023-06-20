@@ -59,6 +59,14 @@
 
       <v-btn type="submit" class="w-100 mt-6" :disabled="disable" color="black">SUBMIT</v-btn>
 
+      <div class="mt-4 pa-2 w-100 bg-red text-white" v-if="errorMessage">
+        We have Some Error Here! try it again.
+      </div>
+
+      <div class="mt-4 pa-2 w-100 bg-green text-white" v-if="success">
+        We have Some Error Here! try it again.
+      </div>
+
     </v-form>
 
   </div>
@@ -95,11 +103,14 @@ const appointmentData = reactive({
   took: false,
 })
 
+const success = ref(false);
+
 const submitAppointment = () => {
   disable.value = true;
   axios.post("appointment/us/", appointmentData).then(res => {
     disable.value = false;
     loading.value = false;
+    success.value = true;
     console.log(res);
   }).catch(err => {
     disable.value = false;

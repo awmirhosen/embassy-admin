@@ -13,7 +13,7 @@ export const useApplicantStore = defineStore("applicant", {
         fetchAllApplicant(loading) {
             axios.get("/applicant").then(res => {
                 loading.value = false;
-                this.allApplicant = res.data;
+                this.allApplicant = res.data.reverse();
                 console.log(res)
             }).catch(err => {
                 loading.value = false;

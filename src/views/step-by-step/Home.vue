@@ -111,7 +111,7 @@
            class="text-h5 d-flex align-center justify-center text-center rounded-circle bg-black text-white">3</p>
       </div>
       <div>
-        <v-form @submit.prevent="createAppointment">
+        <v-form @submit.prevent="createApplicant">
           <v-select
               class="mt-8"
               v-model="applicant.embassy_id"
@@ -133,7 +133,11 @@
           <br>
           Now you can make applicant by fetching this group and select your appo number
         </p>
-        <v-btn color="black" @click="fetchGroup" class="mt-4">Fetch Group</v-btn>
+        <router-link :to="{ name: 'fetchGroup', params: {applicant_id : fetchGroupData._id  , user_id: credentials.user_id} }">
+          <v-btn>
+            Fetch Group
+          </v-btn>
+        </router-link>
 
         <div class="w-100 my-3" v-if="fetchLoading">
           <v-progress-linear
@@ -296,7 +300,7 @@ const createCredential = () => {
 }
 
 //// create appointment
-const createAppointment = () => {
+const createApplicant = () => {
   ///// making a post request
   axios.post(
       "/applicant", applicant

@@ -2,11 +2,6 @@
   <!---------heading title---------------->
   <div class="d-flex justify-space-between align-center pa-4">
     <p class="text-h4 w-100 ms-5 mt-3">Credential</p>
-    <router-link
-      to="/add_platform"
-      class="me-5 v-btn--elevated v-btn text-black bg-white pa-3"
-      >Add Credential</router-link
-    >
   </div>
 
   <!----------------------width 75 % wrapper------------------------>
@@ -15,8 +10,8 @@
     <v-table class="mt-4 rounded-xl border">
       <thead class="bg-black w-100 rounded-xl">
         <tr class="text-center ">
-          <th class="text-center text-white">Name</th>
-          <th class="text-center text-white">Make applicant</th>
+          <th class="text-center text-white">Embassy account username / email</th>
+          <th class="text-center text-white">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -25,10 +20,6 @@
           <td>
             <v-btn color="black" @click="createApplicant(item._id, item.user_id._id)">Make Applicant</v-btn>
           </td>
-
-          <!--        <td>-->
-          <!--          <v-btn color="black" @click="goToApplicant(item._id, item.user_id)">Applicant</v-btn>-->
-          <!--        </td>-->
         </tr>
       </tbody>
     </v-table>

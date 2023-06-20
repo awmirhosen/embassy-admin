@@ -1,7 +1,7 @@
 <template>
   <!---------heading title---------------->
   <div class="d-flex justify-space-between align-center pa-4">
-    <p class="text-h4 w-100 ms-5 mt-3">Add Country</p>
+    <p class="text-h4 w-100 ms-5 mt-3">Add Embassy</p>
     <router-link
       to="/users"
       class="me-5 v-btn--elevated v-btn text-black bg-white pa-3"
