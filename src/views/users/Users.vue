@@ -11,6 +11,14 @@
 
   <!----------------------width 75 % wrapper------------------------>
   <div class="w-75 mx-auto mt-5">
+    <div class="text-center mt-8">
+      <v-progress-circular
+          v-if="loading"
+          indeterminate
+          :size="70"
+          :width="10"
+      ></v-progress-circular>
+    </div>
     <!-------------start table of users-------------->
     <v-table class="mt-4 border rounded-xl">
       <thead class="bg-black">
@@ -46,14 +54,6 @@
       </tbody>
     </v-table>
     <!-------------End table of users-------------->
-    <div class="text-center mt-8">
-      <v-progress-circular
-          v-if="loading"
-          indeterminate
-          :size="70"
-          :width="10"
-      ></v-progress-circular>
-    </div>
   </div>
 </template>
 
@@ -67,13 +67,8 @@ const loading = ref(false)
 // user pinia store
 const usersStore = useUsersStore();
 // fetch all users form pinia
-const checkUserStoreEmpty = async () => {
-  console.log(usersStore.allUsers)
-  if (usersStore.allUsers === null) {
-    await usersStore.fetchAllUsers(loading);
-  }
-}
-checkUserStoreEmpty();
+usersStore.fetchAllUsers(loading)
+
 
 const router = useRouter();
 
