@@ -94,6 +94,11 @@ const router = createRouter({
       name: "credential",
       component: () => import("../views/credentials/Credential.vue"),
     },
+    {
+      path: "/credential/edit/:credential_id",
+      name: "editCredential",
+      component: () => import("../views/credentials/EditPassword.vue"),
+    },
     ////// appointment
     {
       path: "/appointment/us",

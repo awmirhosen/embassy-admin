@@ -11,14 +11,19 @@
       <thead class="bg-black w-100 rounded-xl">
         <tr class="text-center ">
           <th class="text-center text-white">Embassy account username / email</th>
+          <th class="text-center text-white">User</th>
           <th class="text-center text-white">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in credentialStore.allCredential" class="text-center" :key="item.name">
           <td>{{ item.credentials.username }}</td>
+          <td>{{ item.user_id.fullname }}</td>
           <td>
             <v-btn color="black" @click="createApplicant(item._id, item.user_id._id)">Make Applicant</v-btn>
+            <RouterLink :to="{ name: 'editCredential', params: {credential_id: item._id}}">
+              <v-btn color="white" class="ml-3">Edit Password</v-btn>
+            </RouterLink>
           </td>
         </tr>
       </tbody>

@@ -14,7 +14,7 @@ export const useCredentialStore = defineStore("credential", {
             axios.get("/credentials").then(res => {
                 loading.value = false;
                 console.log(res)
-                this.allCredential = res.data;
+                this.allCredential = res.data.reverse();
             }).catch(err => {
                 loading.value = false;
                 console.log(err)
